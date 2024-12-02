@@ -3,7 +3,7 @@
 {
 	"name": "Go + Docker DevContainer",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/go:1.23", // Includes Go and Docker CLI
+	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
 	"customizations": {
 		"vscode": {
 			"settings": {
@@ -26,5 +26,11 @@
 				"eamodio.gitlens"
 			]
 		}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/go:1": {
+			"version": "1.23"
+		},
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
 	}
 }
