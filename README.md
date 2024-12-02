@@ -107,6 +107,8 @@ The next step is to now improve upon this, so that you as a developer can focus 
     * On "main" branch, should be tagged as such <name>:latest
     * On other branches, should be tagged as such <name>:dev-<commitHash> with the hash being a substring of 8 characters
 * The dev Openshift environment should always the use the :latest image that is created when a developer pushes code to main and the build succeeds. Create a trigger in your pipeline that automatically restarts the deployment on Openshift
+* Use a super-lightweight Docker base image for the Golang run image
+    * Right now we're using golang for both but this is not necessary and should be changed to make the run image smaller
 * Write a Go test & add tests execution to the multi-stage Dockerfile
 * Add a metrics endpoint to your application that will give you insights into the application performance
 * If you merge to "main" and your build succeeds at an extra step that Restarts your deployment on Openshift to redeploy the main image immediately
