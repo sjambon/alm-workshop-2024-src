@@ -24,15 +24,19 @@ If one of the tasks is not working or you ran out of time you can always check-o
 ## Task 1
 ### Prerequisites
 
+* ***Fork** the base repository to your own account!*
 * Start your own CodeSpace from the "main" branch **or** run everything locally in VSCode with the devcontainers extension! (This exercise was mostly tested on the GitHub one, so safe to use that)
+    ![Create Codespace](docs/github-create-codespace.png)
+    * This can take a while (+-5mins), so don't panic.
     * You should get some pop-ups to install extensions from the devcontainer.json file
 * Run the command `docker run -p 80:80 nginx` to create a NGINX container inside your devcontainer
-    * VSCode should propose to open up the forwarded port with a button and you should see the NGINX Welcome page
+    * VSCode should propose to open up the forwarded port with a button "Open in Browser" and you should see the NGINX Welcome page
 
         ![NGINX welcome](docs/nginx-welcome.png)
         * If you missed the popup you can click on the little transmission tower in the bottom left
 
-            ![VSCode Transmission Tower](docs/portforward-vscode.png)
+            ![VSCode Transmission Tower](docs/vscode-portforward.png)
+        * You can close the container in the terminal by using CTRL+C
 
 * Go over the code & files in the repository and read the comments to explain what things do
     * ./.devcontainer/devcontainer.json = describes how your devcontainer is setup
@@ -40,6 +44,9 @@ If one of the tasks is not working or you ran out of time you can always check-o
     * ./Dockerfile = Docker multi-stage file to build & run our Go application
 * Test the Dockerfile using `docker build -t test-workshop . --progress=plain` to build the image & run the image by using `docker run -p 3000:3000 test-workshop`
     * The container should be reachable on the URL provided by the GitHub workspace **or** on localhost from your browser
+    * You can also surf to the /workshop endpoint
+
+Cool! We've just managed to compile our application, without actually having to install any kind of SDK or tool manually! This is the power of the devcontainers & multi-stage docker builds for developers and can really simplify onboarding of new team members.
 
 ### Task
 Right now we've got a working "local" development environment from we can develop, however our goal is as followed:

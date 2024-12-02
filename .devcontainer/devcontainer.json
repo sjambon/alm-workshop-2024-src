@@ -1,5 +1,6 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+// This file is used as configuration file for the devcontainer specification and indicates what actions should be taken for the development environment
 {
 	"name": "Go + Docker DevContainer",
 	// Use Debian based base image to support Golang feature
