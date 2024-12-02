@@ -24,7 +24,7 @@ If one of the tasks is not working or you ran out of time you can always check-o
 ## Task 1
 ### Prerequisites
 
-* Start your own CodeSpace from the "main" branch **or** run everything locally in VSCode with the devcontainers extension!
+* Start your own CodeSpace from the "main" branch **or** run everything locally in VSCode with the devcontainers extension! (This exercise was mostly tested on the GitHub one, so safe to use that)
     * You should get some pop-ups to install extensions from the devcontainer.json file
 * Run the command `docker run -p 80:80 nginx` to create a NGINX container inside your devcontainer
     * VSCode should propose to open up the forwarded port with a button and you should see the NGINX Welcome page
@@ -54,7 +54,8 @@ The assignment is as followed:
     * Run the container build & run pipeline to create a container image artifact
         * HINT: You've already done this locally
     * Push the created container to the [quay.io](https://quay.io/) container registry using a [Robot Account](https://docs.quay.io/glossary/robot-accounts.html)
-        * HINT: the image name should be as such <quay-user>/alm-workshop to properly push
+        * HINT: The image name should be as such <quay-user>/alm-workshop to properly push
+        * HINT: You might need to register the repository in quay first before you can push
         * HINT: How will you manage your Quay Robot User password in the pipeline?
 
 ## Task 2
@@ -129,6 +130,8 @@ In general I tried to work in a branching structure which is named as followed s
 
 #### Application
 
+If you want to build the application locally instead of inside the Docker container, you can try this.
+
 **Golang**
 
 `go run main.go workshop.go`
@@ -147,27 +150,29 @@ In general I tried to work in a branching structure which is named as followed s
 
 #### Docker
 
+Some basic Docker commands that you will probably need during this exercise.
+
 **Build**
 
-`docker build -t aelm-workshop-23 .`
+`docker build -t alm-workshop .`
 
 **Run / Test**
 
-`docker run -d --rm -p 3000:3000 --name test-app aelm-workshop-23`
+`docker run -d --rm -p 3000:3000 alm-workshop`
 
-`curl localhost:3000`
+`curl localhost:<whatever-github-or-vscode-tells-you>`
 
-**Rename**
+**Rename (tag) image**
 
-`docker tag aelm-workshop-2023:main $DOCKER_USERNAME/aelm-workshop-23:main`
+`docker tag alm-workshop:main quay.io/$QUAY_USERNAME/alm-workshop:main`
 
-**Login to repository**
+**Login to remote repository**
 
-`docker login -u $DOCKER_USERNAME` --> You can create access tokens on your profile to use (use devspaces secrets)
+`docker login -u $QUAY_USERNAME quay.io`
 
-**Push to repository**
+**Push to remote repository**
 
-`docker push $DOCKER_USERNAME/aelm-workshop-23:main`
+`docker push quay.io/$QUAY_USERNAME/alm-workshop:main`
 
 ## Task 2 - Release
 
