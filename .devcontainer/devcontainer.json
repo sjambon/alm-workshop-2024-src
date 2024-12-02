@@ -2,10 +2,11 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/alpine
 {
 	"name": "Go + Docker DevContainer",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	// Use Debian based base image to support Golang feature
 	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
 	"customizations": {
 		"vscode": {
+			// Open in VSCode by pressing together "CTRL + SHIFT + P" & Type "Open Remote Preferences (JSON)"
 			"settings": {
 				"editor.formatOnSave": true,
 				"editor.codeActions.triggerOnFocusChange": true,
@@ -15,10 +16,10 @@
 				"editor.insertSpaces": true,
 				"files.trimTrailingWhitespace": true,
 				"files.autoSave": "onFocusChange",
-				"security.workspace.trust.untrustedFiles": "open",
 				"explorer.confirmDelete": false,
 				"git.autofetch": true
 			},
+			// Automatically proposes extensions to install inside VSCode
 			"extensions": [
 				"766b.go-outliner",
 				"golang.go",
@@ -27,6 +28,7 @@
 			]
 		}
 	},
+	// Features are automatically installed when container is created https://containers.dev/features
 	"features": {
 		"ghcr.io/devcontainers/features/go:1": {
 			"version": "1.23"
