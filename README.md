@@ -61,9 +61,13 @@ The assignment is as followed:
     * Run the container build & run pipeline to create a container image artifact
         * HINT: You've already done this locally
     * Push the created container to the [quay.io](https://quay.io/) container registry using a [Robot Account](https://docs.quay.io/glossary/robot-accounts.html)
-        * HINT: The image name should be as such <quay-user>/alm-workshop to properly push
-        * HINT: You might need to register the repository in quay first before you can push
+        * HINT: The image name should be as such quay.io/<quay-user>/alm-workshop to properly push
+        * HINT: You might need to register the repository in quay first before you can push.
         * HINT: How will you manage your Quay Robot User password in the pipeline?
+    * You should be able to see your image in Quay.io, run it inside your devcontainer to validate
+        * `docker run -p 3000:3000 quay.io/<yourname>/alm-workshop:<tag>` to pull & run inside your devcontainer
+
+            ![Quay Repository Image](docs/quay-repository-tag.png)
 
 ## Task 2
 
