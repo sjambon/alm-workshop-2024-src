@@ -48,6 +48,10 @@ If one of the tasks is not working or you ran out of time you can always check-o
 
 Cool! We've just managed to compile our application, without actually having to install any kind of SDK or tool manually! This is the power of the devcontainers & multi-stage docker builds for developers and can really simplify onboarding of new team members.
 
+You can also share your links that GitHub codespaces generate when you're running your application, but by default the connection is set to private! You can change the visibilty in the same ports tab as before as you can see in the image. You will also need this later as we will want to start curl requests to the application to update the workshop.
+
+![Change port visibility](docs/vscode-port-visiblity.png)
+
 ### Task
 Right now we've got a working "local" development environment from we can develop, however our goal is as followed:
 * We want to be able to work with multiple developers and have consistent & repeatable builds for our application
