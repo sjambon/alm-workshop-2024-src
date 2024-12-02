@@ -1,17 +1,30 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
 {
-    "image": "mcr.microsoft.com/devcontainers/templates/universal:1.1.2",
-    "forwardPorts": [
-        3000
-    ],
-    "features": {},
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "766b.go-outliner",
-                "golang.go",
-                "premparihar.gotestexplorer",
-                "eamodio.gitlens"
-            ]
-        }
-    }
+	"name": "Go + Docker DevContainer",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/go:1.23", // Includes Go and Docker CLI
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"editor.formatOnSave": true,
+				"editor.codeActions.triggerOnFocusChange": true,
+				"editor.fontSize": 12,
+				"editor.wordWrap": "on",
+				"editor.tabSize": 2,
+				"editor.insertSpaces": true,
+				"files.trimTrailingWhitespace": true,
+				"files.autoSave": "onFocusChange",
+				"security.workspace.trust.untrustedFiles": "open",
+				"explorer.confirmDelete": false,
+				"git.autofetch": true
+			},
+			"extensions": [
+				"766b.go-outliner",
+				"golang.go",
+				"premparihar.gotestexplorer",
+				"eamodio.gitlens"
+			]
+		}
+	}
 }
