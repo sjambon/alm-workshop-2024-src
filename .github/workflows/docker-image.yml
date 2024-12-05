@@ -1,23 +1,39 @@
-name: Docker Image CI
+name: Golang Docker Build
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - '**'
+
+env:
+  CONTAINER_REPOSITORY: quay.io/stevenjambonae
+  CONTAINER_IMAGE: alm-workshop-2024
+  GOLANG_VERSION: 1.23
 
 jobs:
-
-  build:
-
+  docker:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Login to Docker
-      run: docker login -u="stevenjambonae+bent_melis" -p="N8DQ64QAN105HYJW039DMSJTDURJTFTPKW21REH5KF8397NDD8XFLZWI93Z986FK" quay.io
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag sjambon/alm-workshop:$(date +%s)
-    - name: push container to Quay
-      run: docker push sjambon/alm-workshop:$(date +%s)
-    
+      - uses: actions/checkout@v4
+
+      # Quay.io login
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        uses: docker/metadata-action@v4
+        id: meta
+        with:
+          images: ${{ env.CONTAINER_REPOSITORY }}/${{ env.CONTAINER_IMAGE }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
